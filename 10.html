@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app" v-cloak>
+
+        <div>            
+            <p>{{ parentMsg }}</p>
+            <button @click="asyndemo">Add</button>
+
+            <h2 v-html="myResolvedValue"></p>
+        </div>
+
+    </div>
+
+    
+    <script src="vue.js"></script>
+    <script src="vue-async-computed.js"></script>
+
+    <script> 
+
+        Vue.use(AsyncComputed);
+
+        function fancinessComesLater(ms) {
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => resolve('*Fancy* Resolved Value!'), ms)
+                })
+
+        }
+
+        let vob = new Vue({
+
+            el : '#app',
+
+            data : {
+                parentMsg : "Enter text here"
+            },
+
+            methods : {
+
+                asyndemo : function(){
+
+                    this.parentMsg = this.parentMsg + '!';
+
+                }
+            },
+
+            asyncComputed: {
+                async myResolvedValue() {
+                    return await fancinessComesLater(2000);
+                }
+            }
+
+
+        });
+
+    </script>
+
+
+</body>
+</html>

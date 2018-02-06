@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app" v-cloak>
+        <h1>Vue.js templating</h1>
+
+        <h2>Interpolation</h2>
+
+        <h3>Text interpolation</h3>
+        <div>
+            <span>Text binding: {{ text }}</span>
+            <br>
+            <span v-once>One time binding with v-once: {{ text }}</span>
+            <br>
+            <button v-on:click="text += '!'">Set Value</button>
+        </div>
+
+
+        <h3>HTML interpolation</h3>
+        <p>Without v-html
+            <span>{{ htmlContent }}</span>
+            <br> With v-html
+            <span v-html=htmlContent></span>
+        </p>
+
+        <h3>Attribute</h3>
+        <p>
+            <button v-bind:disabled="isDisabledAttr">Disabled</button>
+            <button :disabled="isDisabledAttr">Disabled</button>
+        </p>
+
+        <h3>Expressions</h3>
+        <p>
+            Combining using expressions: {{text + ' ' + isDisabledAttr}}
+        </p>
+
+        <h2>Directives</h2>
+        <p>
+            <span v-if="isDisabledAttr">Show if isDisabledAttr</span>
+            <span v-if="!isDisabledAttr">Show if not isDisabledAttr</span>
+        </p>
+
+        <h2>Filters</h2>
+        <p>
+            Using capitalize: {{text | allCaps}}
+        </p>
+
+    </div>
+
+    
+    <script src="vue.js"></script>
+    <script>
+   
+        let vm =new Vue({
+
+            el: "#app",
+            
+            data : {
+                
+                text: 'Hello world',
+                htmlContent: 'Hello <strong>bold new</strong> world!',
+                isDisabledAttr: true
+                
+            },
+
+            filters: {
+                allCaps: function (value) {
+                    if (!value) return '';
+                    value = value.toString();
+                    return value.toUpperCase();
+                }
+            }        
+
+        });
+
+    </script>
+
+
+</body>
+</html>

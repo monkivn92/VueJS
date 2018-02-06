@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app">
+        <h3 v-for="m in msg">{{m}}</h3>
+        <h4 v-for="item in items">
+            {{item.name}} : {{item.age}}
+        </h4>
+
+        <h5 v-for="(item, key, index) in objectItems">
+            {{ item }} - {{ key }} - {{ index }}
+        </h5>
+    </div>
+
+    
+    <script src="vue.js"></script>
+    <script>
+   
+        let vm =new Vue({
+
+            el: "#app",
+            
+            data : {
+                
+                msg: ['chao!', 'Hi!', 'Ohayo!'],
+
+                items : [
+                    {'name':'1a2b',  age:123},
+                    { 'name': '32dfsd14', age: 8979 }
+                ],
+                objectItems: {
+                    key1: 'item1',
+                    key2: 'item 2',
+                    key3: 'item3'
+                }
+               
+            },                   
+
+            methods : {
+
+                addProp : function(e){
+                   
+                }
+
+            }        
+
+        });
+
+    </script>
+
+
+</body>
+</html>

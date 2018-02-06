@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app" v-cloak>
+
+        <div v-for="subject in results">
+
+            <input v-model="subject.marks">
+
+            <span>
+                Marks for {{ subject.name }}: {{ subject.marks }}
+            </span>
+
+        </div>
+        
+        <span>
+            Total marks are: {{ sumUp }}
+        </span>
+
+    </div>
+
+    
+    <script src="vue.js"></script>
+    <script>
+   
+        let vm =new Vue({
+
+            el: "#app",
+            
+            data : {
+                
+                results: [
+                    {
+                        name: 'English',
+                        marks: 70
+                    },
+                    {
+                        name: 'Math',
+                        marks: 80
+                    },
+                    {
+                        name: 'History',
+                        marks: 90
+                    }
+                ]
+                
+            },
+
+            computed: {
+                sumUp: function () {
+                    
+                        let sum = 0;
+
+                        for( let subj of this.results) // FOR..IN used for Object only
+                        {
+                            sum += parseInt(subj.marks);
+                        }
+
+                        return sum;
+
+                }
+            }        
+
+        });
+
+    </script>
+
+
+</body>
+</html>

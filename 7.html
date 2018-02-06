@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app" v-cloak>
+
+        <button v-on:click="fontSize++">
+            Increase font size
+        </button>
+
+        <button v-on:click="fontSize--">
+            Decrease font size
+        </button>
+        
+        <p v-bind:style="{ fontSize: fontSize + 'px' }">
+            Font size is: {{ fontSize }}
+        </p>
+
+ 
+
+        <p v-for="lk in links">
+            <a :herf="lk.href" @click.prevent="linkClicked(lk)" v-bind:class="lk.class">{{lk.txt}}</a>
+        </p>
+
+
+
+        
+
+
+    </div>
+
+    <style>
+        .underline{
+            color: red;
+            text-decoration: underline;
+        }
+    
+    </style>
+
+    
+    <script src="vue.js"></script>
+    <script>
+   
+        let vm =new Vue({
+
+            el: "#app",
+            
+            data : {
+                
+                fontSize : 10,
+
+                links : [
+                    {href:'#link1', class:[], txt:'link1' },
+                    { href: '#link2', class: [], txt:'link2' },
+                    { href: '#link3', class: [], txt:'link3' }
+                ],
+
+
+                
+            },
+
+            methods : {
+
+                linkClicked : function(item){
+                    
+                    let index = item.class.indexOf('underline');
+                    
+                    if(index != -1)
+                    {
+                        item.class.splice(index, 1);
+                    }
+                    else
+                    {
+                        item.class.push('underline');
+                    }
+                    
+                }
+            }   
+
+        });
+
+    </script>
+
+
+</body>
+</html>
