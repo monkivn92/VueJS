@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+
+    <div id="app" v-cloak>
+
+        <child>
+            <span>{{parentVar}}</span>
+        </child>
+
+        <child>
+            <h1 slot="slotName222"> Head to down</h1>
+            <h1 slot="slotName"> up to top</h1>
+
+        </child>
+
+    </div>
+
+    
+    <script src="vue.js"></script>    
+
+    <script> 
+
+        let child = {
+            template : '<div><p> I\'m the child component!</p><slot><p>Hello from the child slot default!</p></slot><slot name="slotName"></slot><slot name="slotName222"></slot></div >'
+        }
+
+        let child222 = {
+            template: '<div><p> I\'m the child222 component!</p></div >'
+        }
+
+        let child333 = {
+            template: '<div><p> I\'m the child333 component!</p></div >'
+        }
+
+        
+        let vm = new Vue({
+            el : '#app',
+            components : {
+                'child' : child,
+                'child222' : child222,
+                'child333' : child333,
+            },
+            data : {
+                parentVar : 'parent variable'
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
